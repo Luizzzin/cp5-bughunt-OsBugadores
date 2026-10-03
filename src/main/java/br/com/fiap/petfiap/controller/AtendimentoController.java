@@ -36,7 +36,7 @@ public class AtendimentoController {
             @RequestParam String tutorNome,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataHora) {
         try {
-            int protocolo = GeradorProtocolo.getInstancia().proximoProtocolo();
+            int protocolo = GeradorProtocolo.getInstancia().proximo();
             Atendimento atendimento = new AtendimentoBuilder()
                     .comTipo(tipo)
                     .comPet(petNome, porte)
