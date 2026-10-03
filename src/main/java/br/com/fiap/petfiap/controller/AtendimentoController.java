@@ -20,11 +20,14 @@ import java.util.Map;
 @RequestMapping("/api/atendimentos")
 public class AtendimentoController {
 
+    private static final int STATUS_CRIADO = 201;
+    private static final int STATUS_CONFLITO = 409;
+
     @Autowired
     private AgendaService service;
 
-    // POST /api/atendimentos?tutorNome=Ana - Agendar atendimento
-    // Ex.: POST "/api/atendimentos?tipo=BANHO&petNome=Rex&porte=PEQUENO&tutorNome=Ana&dataHora=2026-10-01T10:00"
+    // POST /api/atendimentos - Agendar atendimento
+// Ex.: POST "/api/atendimentos?tipo=BANHO&petNome=Rex&porte=PEQUENO&tutorNome=Ana&dataHora=<data futura, ex.: 2027-01-15T10:00>"
     @PostMapping
     public ResponseEntity<Atendimento> agendar(
             @RequestParam String tipo,
@@ -40,11 +43,11 @@ public class AtendimentoController {
                     .comTutor(tutorNome)
                     .comDataHora(dataHora)
                     .construir(protocolo);
-            return ResponseEntity.status(201).body(service.agendar(atendimento));
+            return ResponseEntity.status(STATUS_CRIADO).body(service.agendar(atendimento));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         } catch (HorarioOcupadoException e) {
-            return ResponseEntity.status(409).build();
+            return ResponseEntity.status(STATUS_CONFLITO).build();
         }
     }
 
