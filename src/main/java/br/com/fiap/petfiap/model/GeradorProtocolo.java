@@ -10,8 +10,6 @@ public class GeradorProtocolo {
     private int contador;
 
     private GeradorProtocolo() {
-        contador = 0;
-        System.out.println("GeradorProtocolo criado!");
     }
 
     public static GeradorProtocolo getInstancia() {
@@ -21,7 +19,7 @@ public class GeradorProtocolo {
         return instancia;
     }
 
-    public int proximo() {
+    public int proximoProtocolo() {
         contador++;
         return contador;
     }
