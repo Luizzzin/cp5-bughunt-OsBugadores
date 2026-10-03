@@ -1,18 +1,16 @@
 # Checkpoint 5 — Bug Hunt PetFiap
 
-> Copie este arquivo para a raiz do seu repositório com o nome **README.md**
-> e preencha todas as seções.
+
 
 ## Identificação
 
 **Grupo:** ___
 
-| Integrante | RM | Turma |
-|---|---|---|
-| | | |
-| | | |
-| | | |
-| | | |
+| Integrante                 | RM     | Turma |
+|----------------------------|--------|-------|
+| Luiz Henrique Barbosa Dias | 562399 | 2CCPO |
+| Gregory Debom Ferreira     | 562346 | 2CCPO |
+
 
 | Campo | |
 |---|---|
