@@ -36,24 +36,25 @@ public class AtendimentoBuilder {
         return this;
     }
 
-    // A validacao dos campos obrigatorios fica por conta do controller,
-    // que conhece a regra de negocio do PetFiap.
+    // Valida os campos obrigatorios antes de criar o atendimento.
     public Atendimento construir(int protocolo) {
-        if (tipo == null || tipo.isBlank()) {
-            throw new IllegalArgumentException("Tipo do atendimento é obrigatório");
-        }
-        if (petNome == null || petNome.isBlank()) {
-            throw new IllegalArgumentException("Nome do pet é obrigatório");
-        }
-        if (petPorte == null || petPorte.isBlank()) {
-            throw new IllegalArgumentException("Porte do pet é obrigatório");
-        }
-        if (tutorNome == null || tutorNome.isBlank()) {
-            throw new IllegalArgumentException("Nome do tutor é obrigatório");
-        }
+        validarCamposObrigatorios();
+        return AtendimentoFactory.criar(protocolo, tipo, petNome, petPorte, tutorNome, dataHora);
+    }
+
+    private void validarCamposObrigatorios() {
+        exigirPreenchido(tipo, "Tipo do atendimento é obrigatório");
+        exigirPreenchido(petNome, "Nome do pet é obrigatório");
+        exigirPreenchido(petPorte, "Porte do pet é obrigatório");
+        exigirPreenchido(tutorNome, "Nome do tutor é obrigatório");
         if (dataHora == null) {
             throw new IllegalArgumentException("Data e hora são obrigatórias");
         }
-        return AtendimentoFactory.criar(protocolo, tipo, petNome, petPorte, tutorNome, dataHora);
+    }
+
+    private void exigirPreenchido(String valor, String mensagem) {
+        if (valor == null || valor.isBlank()) {
+            throw new IllegalArgumentException(mensagem);
+        }
     }
 }
